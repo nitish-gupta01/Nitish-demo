@@ -1,0 +1,35 @@
+
+<!DOCTYPE html><html><head><meta charset='UTF-8'>
+<title>India Bihar Geography Quiz</title>
+<style>
+body{font-family:Arial;background:#eef2ff;padding:20px}
+.box{max-width:800px;margin:auto;background:white;padding:20px;border-radius:12px}
+button{display:block;width:100%;padding:12px;margin:8px 0;font-size:16px}
+</style></head><body>
+<div class='box'>
+<h1>India + Bihar Geography Quiz</h1>
+<h2 id='q'></h2><div id='ops'></div><p id='msg'></p>
+<button id='next' onclick='nextQ()' style='display:none'>Next</button>
+</div>
+<script>
+const questions=[{"q": "भारत में काली मिट्टी किस फसल के लिए सबसे उपयुक्त मानी जाती है?", "o": ["गेहूँ", "चावल", "कपास", "जूट"], "a": "कपास"}, {"q": "कोसी नदी को किस नाम से जाना जाता है?", "o": ["बिहार का शोक", "बंगाल का शोक", "असम का शोक", "पंजाब का शोक"], "a": "बिहार का शोक"}, {"q": "गंगा नदी बिहार में किस दिशा में बहती है?", "o": ["उत्तर से दक्षिण", "दक्षिण से उत्तर", "पश्चिम से पूर्व", "पूर्व से पश्चिम"], "a": "पश्चिम से पूर्व"}, {"q": "भारत में दक्षिण-पश्चिम मानसून सामान्यतः किस महीने में प्रवेश करता है?", "o": ["अप्रैल", "मई", "जून", "जुलाई"], "a": "जून"}, {"q": "भारत की सबसे ऊँची पर्वत चोटी कौन सी है?", "o": ["नंदा देवी", "कंचनजंगा", "धौलागिरी", "कामेत"], "a": "कंचनजंगा"}, {"q": "जलोढ़ मिट्टी मुख्य रूप से कहाँ पाई जाती है?", "o": ["गंगा के मैदान में", "अरावली क्षेत्र में", "पश्चिमी घाट में", "दक्कन पठार में"], "a": "गंगा के मैदान में"}, {"q": "बिहार की सबसे लंबी नदी कौन सी है?", "o": ["कोसी", "सोन", "गंगा", "गंडक"], "a": "गंगा"}, {"q": "भारत में सर्वाधिक वर्षा कहाँ होती है?", "o": ["चेरापूंजी", "पटना", "दिल्ली", "जयपुर"], "a": "चेरापूंजी"}, {"q": "भारत की सबसे लंबी प्रायद्वीपीय नदी कौन सी है?", "o": ["नर्मदा", "गोदावरी", "कृष्णा", "कावेरी"], "a": "गोदावरी"}, {"q": "भारत की सबसे पुरानी पर्वतमाला कौन सी है?", "o": ["हिमालय", "सतपुड़ा", "अरावली", "विंध्य"], "a": "अरावली"}];
+let i=0,score=0;
+function load(){
+document.getElementById('msg').innerHTML='';
+document.getElementById('next').style.display='none';
+document.getElementById('q').innerHTML=(i+1)+'. '+questions[i].q;
+document.getElementById('ops').innerHTML=questions[i].o.map(x=>`<button onclick="check(this,'${x}')">${x}</button>`).join('');
+}
+function check(btn,a){
+document.querySelectorAll('#ops button').forEach(b=>b.disabled=true);
+if(a===questions[i].a){btn.style.background='lightgreen';score++;document.getElementById('msg').innerHTML='✅ सही उत्तर';}
+else{btn.style.background='salmon';document.getElementById('msg').innerHTML='❌ गलत। सही उत्तर: '+questions[i].a;}
+document.getElementById('next').style.display='block';
+}
+function nextQ(){
+i++;
+if(i<questions.length)load();
+else document.querySelector('.box').innerHTML=`<h1>Quiz Finished</h1><h2>Score: ${score}/${questions.length}</h2>`;
+}
+load();
+</script></body></html>
