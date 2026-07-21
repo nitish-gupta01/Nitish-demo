@@ -1,35 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!DOCTYPE html><html><head><meta charset='UTF-8'>
-<title>India Bihar Geography Quiz</title>
-<style>
-body{font-family:Arial;background:#eef2ff;padding:20px}
-.box{max-width:800px;margin:auto;background:white;padding:20px;border-radius:12px}
-button{display:block;width:100%;padding:12px;margin:8px 0;font-size:16px}
-</style></head><body>
-<div class='box'>
-<h1>India + Bihar Geography Quiz</h1>
-<h2 id='q'></h2><div id='ops'></div><p id='msg'></p>
-<button id='next' onclick='nextQ()' style='display:none'>Next</button>
-</div>
-<script>
-const questions=[{"q": "भारत में काली मिट्टी किस फसल के लिए सबसे उपयुक्त मानी जाती है?", "o": ["गेहूँ", "चावल", "कपास", "जूट"], "a": "कपास"}, {"q": "कोसी नदी को किस नाम से जाना जाता है?", "o": ["बिहार का शोक", "बंगाल का शोक", "असम का शोक", "पंजाब का शोक"], "a": "बिहार का शोक"}, {"q": "गंगा नदी बिहार में किस दिशा में बहती है?", "o": ["उत्तर से दक्षिण", "दक्षिण से उत्तर", "पश्चिम से पूर्व", "पूर्व से पश्चिम"], "a": "पश्चिम से पूर्व"}, {"q": "भारत में दक्षिण-पश्चिम मानसून सामान्यतः किस महीने में प्रवेश करता है?", "o": ["अप्रैल", "मई", "जून", "जुलाई"], "a": "जून"}, {"q": "भारत की सबसे ऊँची पर्वत चोटी कौन सी है?", "o": ["नंदा देवी", "कंचनजंगा", "धौलागिरी", "कामेत"], "a": "कंचनजंगा"}, {"q": "जलोढ़ मिट्टी मुख्य रूप से कहाँ पाई जाती है?", "o": ["गंगा के मैदान में", "अरावली क्षेत्र में", "पश्चिमी घाट में", "दक्कन पठार में"], "a": "गंगा के मैदान में"}, {"q": "बिहार की सबसे लंबी नदी कौन सी है?", "o": ["कोसी", "सोन", "गंगा", "गंडक"], "a": "गंगा"}, {"q": "भारत में सर्वाधिक वर्षा कहाँ होती है?", "o": ["चेरापूंजी", "पटना", "दिल्ली", "जयपुर"], "a": "चेरापूंजी"}, {"q": "भारत की सबसे लंबी प्रायद्वीपीय नदी कौन सी है?", "o": ["नर्मदा", "गोदावरी", "कृष्णा", "कावेरी"], "a": "गोदावरी"}, {"q": "भारत की सबसे पुरानी पर्वतमाला कौन सी है?", "o": ["हिमालय", "सतपुड़ा", "अरावली", "विंध्य"], "a": "अरावली"}];
-let i=0,score=0;
-function load(){
-document.getElementById('msg').innerHTML='';
-document.getElementById('next').style.display='none';
-document.getElementById('q').innerHTML=(i+1)+'. '+questions[i].q;
-document.getElementById('ops').innerHTML=questions[i].o.map(x=>`<button onclick="check(this,'${x}')">${x}</button>`).join('');
-}
-function check(btn,a){
-document.querySelectorAll('#ops button').forEach(b=>b.disabled=true);
-if(a===questions[i].a){btn.style.background='lightgreen';score++;document.getElementById('msg').innerHTML='✅ सही उत्तर';}
-else{btn.style.background='salmon';document.getElementById('msg').innerHTML='❌ गलत। सही उत्तर: '+questions[i].a;}
-document.getElementById('next').style.display='block';
-}
-function nextQ(){
-i++;
-if(i<questions.length)load();
-else document.querySelector('.box').innerHTML=`<h1>Quiz Finished</h1><h2>Score: ${score}/${questions.length}</h2>`;
-}
-load();
-</script></body></html>
+    <title>Sales Analytics Dashboard | Nitish Kumar</title>
+
+    <meta name="description"
+          content="Sales Analytics Dashboard developed by Nitish Kumar using Microsoft Power BI. Explore sales, profit, regional performance, category analysis and business insights.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #1787f7;
+            --primary-dark: #0868d7;
+            --dark: #08111f;
+            --dark-2: #0e1929;
+            --text: #dbe7f5;
+            --muted: #8fa4bb;
+            --card: rgba(255,255,255,0.055);
+            --border: rgba(255,255,255,0.10);
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(23,135,247,0.15), transparent 30%),
+                radial-gradient(circle at 90% 20%, rgba(39,97,255,0.10), transparent 25%),
+                var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1180px, 90%);
+            margin: auto;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(8,17,31,0.88);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: 0.3px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 27px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        /* HERO */
+
+        .hero {
+            padding: 95px 0 65px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border-radius: 50px;
+            background: rgba(23,135,247,.10);
+            border: 1px solid rgba(23,135,247,.30);
+            color: #63b1ff;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            background: #3ba0ff;
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            max-width: 900px;
+            margin: auto;
+            font-size: clamp(40px, 6vw, 70px);
+            line-height: 1.08;
+            color: var(--white);
+            letter-spacing: -2px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, #1688ff, #67b9ff);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 760px;
+            margin: 24px auto 0;
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        .hero-buttons {
+            margin-top: 34px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .btn {
+            padding: 13px 22px;
+            border-radius: 9px;
+            font-weight: 700;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: .3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 8px 30px rgba(23,135,247,.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,.04);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,.08);
+            transform: translateY(-2px);
+        }
+
+        /* DASHBOARD IMAGE */
+
+        .dashboard-wrapper {
+            margin-top: 65px;
+            padding: 10px;
+            border-radius: 18px;
+            background: linear-gradient(
+                135deg,
+                rgba(23,135,247,.35),
+                rgba(255,255,255,.08)
+            );
+            box-shadow: 0 30px 80px rgba(0,0,0,.45);
+        }
+
+        .dashboard-wrapper img {
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+            background: white;
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 85px 0;
+        }
+
+        .section-tag {
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 9px;
+        }
+
+        .section-title {
+            font-size: clamp(30px, 4vw, 43px);
+            color: white;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .section-description {
+            max-width: 750px;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        /* KPI */
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-top: 40px;
+        }
+
+        .kpi-card {
+            padding: 27px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            transition: .3s;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(23,135,247,.45);
+        }
+
+        .kpi-card h3 {
+            color: var(--white);
+            font-size: 29px;
+            margin-bottom: 4px;
+        }
+
+        .kpi-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* ABOUT */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 35px;
+            margin-top: 42px;
+        }
+
+        .content-card {
+            padding: 32px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+        }
+
+        .content-card h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 21px;
+        }
+
+        .content-card p {
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        /* INSIGHTS */
+
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-top: 40px;
+        }
+
+        .insight {
+            display: flex;
+            gap: 17px;
+            padding: 25px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: var(--card);
+        }
+
+        .number {
+            flex-shrink: 0;
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: rgba(23,135,247,.13);
+            color: #57adff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .insight h4 {
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .insight p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* FEATURES */
+
+        .features-grid {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .feature {
+            padding: 26px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+
+        .feature-icon {
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* TECH */
+
+        .tech-list {
+            margin-top: 35px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tech {
+            padding: 10px 17px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: #d7e5f5;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* WORKFLOW */
+
+        .workflow {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .step {
+            padding: 15px 19px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .arrow {
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        /* CTA */
+
+        .cta {
+            padding: 65px 35px;
+            text-align: center;
+            border: 1px solid rgba(23,135,247,.25);
+            border-radius: 22px;
+            background:
+                radial-gradient(circle at center, rgba(23,135,247,.16), transparent 60%),
+                var(--card);
+        }
+
+        .cta h2 {
+            color: white;
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .cta p {
+            max-width: 650px;
+            margin: auto;
+            color: var(--muted);
+        }
+
+        .cta .btn {
+            margin-top: 25px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid var(--border);
+            padding: 30px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .footer-content strong {
+            color: white;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 900px) {
+
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid,
+            .insight-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media(max-width: 600px) {
+
+            .hero {
+                padding-top: 70px;
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .kpi-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+    <div class="container nav-container">
+
+        <div class="logo">
+            Nitish<span>.</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="#overview">Overview</a>
+            <a href="#insights">Insights</a>
+            <a href="#features">Features</a>
+            <a href="#tools">Tools</a>
+            <a href="#project">Project</a>
+        </div>
+
+    </div>
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero">
+
+    <div class="container">
+
+        <div class="badge">
+            <span class="badge-dot"></span>
+            POWER BI DATA ANALYTICS PROJECT
+        </div>
+
+        <h1>
+            Sales & Profit
+            <span>Analytics Dashboard</span>
+        </h1>
+
+        <p>
+            An interactive Power BI dashboard designed to analyze sales,
+            profitability, product categories, regional performance and
+            yearly business trends for better data-driven decision making.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a class="btn btn-primary"
+               href="https://github.com/nitish-gupta01/Nitish-demo"
+               target="_blank">
+                View Project on GitHub ↗
+            </a>
+
+            <a class="btn btn-outline" href="#dashboard">
+                Explore Dashboard ↓
+            </a>
+
+        </div>
+
+
+        <!-- DASHBOARD SCREENSHOT -->
+
+        <div class="dashboard-wrapper" id="dashboard">
+
+            <img src="dashboard.png"
+                 alt="Sales Analytics Power BI Dashboard">
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- KPI SECTION -->
+
+<section id="overview">
+
+    <div class="container">
+
+        <div class="section-tag">Dashboard Overview</div>
+
+        <h2 class="section-title">
+            Key Performance Indicators
+        </h2>
+
+        <p class="section-description">
+            The dashboard provides a high-level view of the most important
+            business metrics, making it easier to understand overall sales
+            and profitability performance.
+        </p>
+
+
+        <div class="kpi-grid">
+
+            <div class="kpi-card">
+                <h3>678.50K</h3>
+                <p>Total Sales</p>
+            </div>
+
+            <div class="kpi-card">
+                <h3>72.86K</h3>
+                <p>Total Profit</p>
+            </div>
+
+            <div class="kpi-card">
+                <h3>11K</h3>
+                <p>Total Quantity</p>
+            </div>
+
+            <div class="kpi-card">
+                <h3>10.74%</h3>
+                <p>Profit Margin</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROJECT OVERVIEW -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-tag">About The Project</div>
+
+        <h2 class="section-title">
+            Turning Sales Data Into Business Insights
+        </h2>
+
+
+        <div class="about-grid">
+
+            <div class="content-card">
+
+                <h3>Project Objective</h3>
+
+                <p>
+                    The objective of this project is to transform sales data
+                    into a clear and interactive analytical dashboard.
+                    The dashboard helps users evaluate revenue, profitability,
+                    product performance, regional sales and historical sales
+                    trends from one centralized view.
+                </p>
+
+            </div>
+
+
+            <div class="content-card">
+
+                <h3>Dashboard Approach</h3>
+
+                <p>
+                    The project focuses on presenting complex sales information
+                    through KPI cards, category comparisons, sub-category
+                    analysis, geographical visualization, interactive filters
+                    and yearly trend analysis.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- INSIGHTS -->
+
+<section id="insights">
+
+    <div class="container">
+
+        <div class="section-tag">Data Insights</div>
+
+        <h2 class="section-title">
+            Key Findings From The Dashboard
+        </h2>
+
+        <p class="section-description">
+            The visualization reveals several useful patterns across sales,
+            profit, product categories and yearly performance.
+        </p>
+
+
+        <div class="insight-grid">
+
+            <div class="insight">
+
+                <div class="number">01</div>
+
+                <div>
+                    <h4>Office Supplies Leads Profit</h4>
+
+                    <p>
+                        Office Supplies generates the highest profit among
+                        the major product categories displayed in the dashboard.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="insight">
+
+                <div class="number">02</div>
+
+                <div>
+                    <h4>Strong Sub-Category Performance</h4>
+
+                    <p>
+                        Binders and Art appear among the strongest
+                        profit-generating sub-categories in the analysis.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="insight">
+
+                <div class="number">03</div>
+
+                <div>
+                    <h4>Sales Peaked in 2016</h4>
+
+                    <p>
+                        The yearly sales trend shows a significant increase
+                        through 2016, reaching the highest point in the
+                        displayed period.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="insight">
+
+                <div class="number">04</div>
+
+                <div>
+                    <h4>Regional Performance Tracking</h4>
+
+                    <p>
+                        Regional sales visualization makes it possible to
+                        compare geographic performance and understand where
+                        sales are being generated.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DASHBOARD FEATURES -->
+
+<section id="features">
+
+    <div class="container">
+
+        <div class="section-tag">Dashboard Features</div>
+
+        <h2 class="section-title">
+            Interactive Analysis
+        </h2>
+
+
+        <div class="features-grid">
+
+            <div class="feature">
+
+                <div class="feature-icon">📊</div>
+
+                <h3>KPI Tracking</h3>
+
+                <p>
+                    Tracks total sales, total profit, quantity and profit margin
+                    through clear KPI cards.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">📦</div>
+
+                <h3>Category Analysis</h3>
+
+                <p>
+                    Compares profitability across Office Supplies,
+                    Furniture and Technology categories.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">🔎</div>
+
+                <h3>Sub-Category Analysis</h3>
+
+                <p>
+                    Provides detailed profit comparison across individual
+                    product sub-categories.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">🌍</div>
+
+                <h3>Geographical Analysis</h3>
+
+                <p>
+                    Uses map visualization to explore sales and profit
+                    information across different locations.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">📈</div>
+
+                <h3>Sales Trend Analysis</h3>
+
+                <p>
+                    Displays historical sales movement across multiple years
+                    to identify growth and decline patterns.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">⚙️</div>
+
+                <h3>Interactive Filters</h3>
+
+                <p>
+                    Region, category and order-date filters allow users
+                    to dynamically explore specific portions of the data.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TOOLS -->
+
+<section id="tools">
+
+    <div class="container">
+
+        <div class="section-tag">Technology Stack</div>
+
+        <h2 class="section-title">
+            Tools & Skills Used
+        </h2>
+
+
+        <div class="tech-list">
+
+            <div class="tech">Microsoft Power BI</div>
+
+            <div class="tech">Power Query</div>
+
+            <div class="tech">DAX</div>
+
+            <div class="tech">Data Cleaning</div>
+
+            <div class="tech">Data Visualization</div>
+
+            <div class="tech">Data Analysis</div>
+
+            <div class="tech">Dashboard Design</div>
+
+            <div class="tech">Business Intelligence</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WORKFLOW -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-tag">Project Workflow</div>
+
+        <h2 class="section-title">
+            From Raw Data To Insights
+        </h2>
+
+
+        <div class="workflow">
+
+            <div class="step">Raw Dataset</div>
+
+            <div class="arrow">→</div>
+
+            <div class="step">Data Cleaning</div>
+
+            <div class="arrow">→</div>
+
+            <div class="step">Data Transformation</div>
+
+            <div class="arrow">→</div>
+
+            <div class="step">Data Modeling</div>
+
+            <div class="arrow">→</div>
+
+            <div class="step">DAX Measures</div>
+
+            <div class="arrow">→</div>
+
+            <div class="step">Dashboard</div>
+
+            <div class="arrow">→</div>
+
+            <div class="step">Business Insights</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- GITHUB PROJECT -->
+
+<section id="project">
+
+    <div class="container">
+
+        <div class="cta">
+
+            <div class="section-tag">
+                Explore The Complete Project
+            </div>
+
+            <h2>
+                View the Power BI Project
+            </h2>
+
+            <p>
+                Explore the project repository and access the original
+                Power BI PBIX project file directly through GitHub.
+            </p>
+
+            <a class="btn btn-primary"
+               href="https://github.com/nitish-gupta01/Nitish-demo"
+               target="_blank">
+
+                Open GitHub Repository ↗
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="container footer-content">
+
+        <div>
+            Designed & Developed by
+            <strong>Nitish Kumar</strong>
+        </div>
+
+        <div>
+            Data Analytics • Power BI • Business Intelligence
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
